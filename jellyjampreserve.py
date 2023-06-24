@@ -9,8 +9,8 @@ import RPi.GPIO as GPIO
 
 HOST = '127.0.0.1'
 PORT = 7777
-SWITCH = 2
-LED = 3
+SWITCH = 26
+LED = 17 
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(LED, GPIO.OUT)
@@ -26,9 +26,11 @@ def callback(gpio_id):
     if GPIO.input(gpio_id) == 0:
         GPIO.output(LED, GPIO.HIGH)
         client.send(START)
+        print('START RECORDING')
     else:
         GPIO.output(LED, GPIO.LOW)
         client.send(STOP)
+        print('STOP RECORDING')
 
 
 def main():
